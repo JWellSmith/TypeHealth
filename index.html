@@ -3,13 +3,84 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My First Website</title>
+    <title>TypeHealth – Bridging the Mental Health Gap</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Hello, world!</h1>
-    <p>This is my first website.</p>
-    <button onclick="sayHello()">Click Me</button>
+    <header>
+        <h1>TypeHealth</h1>
+        <p>Bridging the Mental Health Gap</p>
+        <nav>
+            <a href="#geo">GeoInsights Map</a>
+            <a href="#sentiment">Sentiment Tracker</a>
+            <a href="#explorer">Disparity Explorer</a>
+            <a href="#policy">Policy Toolkit</a>
+            <a href="#voice">Voice It Wall</a>
+            <a href="#stakeholders">Stakeholder Reports</a>
+        </nav>
+    </header>
+
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>TypeHealth is an interactive web platform dedicated to uncovering and addressing mental health disparities in marginalized communities. It integrates geospatial data and social media sentiment analytics to provide an evidence-based policy framework for healthcare organizations, government agencies, and community advocates.</p>
+    </section>
+
+    <section id="geo">
+        <h2>🗽️ GeoInsights Map</h2>
+        <p>Dynamic map showing sample mental health clinic distribution, high-risk areas, and disparity indices layered with demographic data.</p>
+        <img src="assets/sample-map.png" alt="Sample GeoInsights Map" style="width:100%; max-width:600px;" />
+    </section>
+
+    <section id="sentiment">
+        <h2>💬 Sentiment Tracker</h2>
+        <p>NLP-powered dashboard analyzing mental health sentiment trends on social media platforms like Twitter and Reddit.</p>
+        <ul>
+            <li>Positive: 40%</li>
+            <li>Neutral: 30%</li>
+            <li>Negative: 30%</li>
+        </ul>
+    </section>
+
+    <section id="explorer">
+        <h2>📊 Disparity Explorer</h2>
+        <p>Filterable datasets (sample data) visualizing correlations between mental health outcomes and:</p>
+        <ul>
+            <li>Race and Ethnicity</li>
+            <li>Income Levels</li>
+            <li>LGBTQ+ Identification</li>
+            <li>Healthcare Access</li>
+        </ul>
+    </section>
+
+    <section id="policy">
+        <h2>💾 Policy Toolkit</h2>
+        <p>Interactive policy builder with downloadable toolkits, success stories, and customizable templates.</p>
+        <button>Download Sample Toolkit</button>
+    </section>
+
+    <section id="voice">
+        <h2>📢 Voice It Wall</h2>
+        <p>Community feedback board. Add your story or suggestions (demo-only):</p>
+        <form>
+            <input type="text" placeholder="Your Name" required />
+            <textarea placeholder="Share your story..." required></textarea>
+            <button type="submit">Post</button>
+        </form>
+    </section>
+
+    <section id="stakeholders">
+        <h2>👤 Stakeholder Reports</h2>
+        <p>Downloadable sample briefs tailored for different groups:</p>
+        <ul>
+            <li><a href="#">Healthcare Providers Brief</a></li>
+            <li><a href="#">Policy Makers Brief</a></li>
+            <li><a href="#">Community Organizations Brief</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 TypeHealth Project Team | Contact: connect@typehealth.org</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

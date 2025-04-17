@@ -4,81 +4,880 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TypeHealth – Bridging the Mental Health Gap</title>
-    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #006f6a 0%, #004d40 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+            header h1 {
+                margin: 0;
+                font-size: 3rem;
+                letter-spacing: 1px;
+            }
+
+            header p {
+                font-size: 1.2rem;
+                margin: 10px 0 20px;
+                color: #e0f2f1;
+            }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+            nav a {
+                margin: 5px 15px;
+                color: #ffd166;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 1rem;
+                padding: 8px 12px;
+                border-radius: 20px;
+                transition: all 0.3s ease;
+            }
+
+                nav a:hover {
+                    background: rgba(255,255,255,0.1);
+                    transform: translateY(-2px);
+                }
+
+        /* Hero Section */
+        .hero {
+            background: url('/api/placeholder/1200/400') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+            .hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.5);
+            }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffd166;
+            color: #333;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background: #ffbd17;
+                transform: translateY(-3px);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #ffd166;
+            color: #ffd166;
+        }
+
+            .btn-outline:hover {
+                background: rgba(255,209,102,0.1);
+            }
+
+        /* Section Styles */
+        section {
+            padding: 40px 20px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 1160px;
+        }
+
+            section h2 {
+                color: #00796b;
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #e0f2f1;
+            }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .feature-card h3 {
+                color: #00796b;
+                font-size: 1.3rem;
+                margin-top: 0;
+            }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #00796b;
+        }
+
+        /* Map and Visualization Styles */
+        .map-container, .chart-container {
+            width: 100%;
+            height: 400px;
+            background: #eee;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .data-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .control-btn {
+            background: #e0f2f1;
+            color: #00796b;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .control-btn:hover, .control-btn.active {
+                background: #00796b;
+                color: white;
+            }
+
+        /* Statistics Section */
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 150px;
+            margin: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00796b;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Sentiment Analysis */
+        .sentiment-chart {
+            display: flex;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .sentiment-positive {
+            background: #4caf50;
+            height: 100%;
+        }
+
+        .sentiment-neutral {
+            background: #90a4ae;
+            height: 100%;
+        }
+
+        .sentiment-negative {
+            background: #f44336;
+            height: 100%;
+        }
+
+        .sentiment-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* Form Styling */
+        .form-container {
+            background: #f2f2f2;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        form button {
+            width: 100%;
+            padding: 12px;
+            background: #00796b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            form button:hover {
+                background: #004d40;
+            }
+
+        /* Stakeholder Reports */
+        .reports-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .reports-list li {
+                margin-bottom: 15px;
+                background: #f5f5f5;
+                padding: 15px;
+                border-radius: 6px;
+                transition: all 0.3s ease;
+            }
+
+                .reports-list li:hover {
+                    background: #e0f2f1;
+                }
+
+            .reports-list a {
+                color: #00796b;
+                text-decoration: none;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+                .reports-list a::after {
+                    content: "→";
+                    font-size: 1.2rem;
+                }
+
+        /* Testimonials */
+        .testimonials {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testimonial-card {
+            flex: 0 0 300px;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            scroll-snap-align: start;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: #e0f2f1;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+            .newsletter h3 {
+                color: #00796b;
+                margin-top: 0;
+            }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 20px auto 0;
+        }
+
+            .newsletter-form input {
+                flex: 1;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 6px 0 0 6px;
+                font-size: 1rem;
+            }
+
+            .newsletter-form button {
+                padding: 12px 20px;
+                background: #00796b;
+                color: white;
+                border: none;
+                border-radius: 0 6px 6px 0;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+                .newsletter-form button:hover {
+                    background: #004d40;
+                }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            color: #ffd166;
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .footer-column a:hover {
+                color: #ffd166;
+            }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .social-icons a {
+                display: inline-block;
+                width: 36px;
+                height: 36px;
+                background: #555;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+
+                .social-icons a:hover {
+                    background: #ffd166;
+                    transform: translateY(-3px);
+                }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                flex-direction: column;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+                .newsletter-form input,
+                .newsletter-form button {
+                    width: 100%;
+                    border-radius: 6px;
+                    margin-bottom: 10px;
+                }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>TypeHealth</h1>
-        <p>Bridging the Mental Health Gap</p>
-        <nav>
-            <a href="#geo">GeoInsights Map</a>
-            <a href="#sentiment">Sentiment Tracker</a>
-            <a href="#explorer">Disparity Explorer</a>
-            <a href="#policy">Policy Toolkit</a>
-            <a href="#voice">Voice It Wall</a>
-            <a href="#stakeholders">Stakeholder Reports</a>
-        </nav>
+        <div class="container">
+            <h1>TypeHealth</h1>
+            <p>Bridging the Mental Health Gap</p>
+            <nav>
+                <a href="#geo">GeoInsights Map</a>
+                <a href="#sentiment">Sentiment Tracker</a>
+                <a href="#explorer">Disparity Explorer</a>
+                <a href="#policy">Policy Toolkit</a>
+                <a href="#voice">Voice It Wall</a>
+                <a href="#stakeholders">Stakeholder Reports</a>
+            </nav>
+        </div>
     </header>
 
+    <div class="hero">
+        <div class="hero-content">
+            <h2>Empowering Communities Through Data</h2>
+            <p>Join us in our mission to identify and address mental health disparities in underserved communities with evidence-based solutions and community engagement.</p>
+            <a href="#explorer" class="btn">Explore The Data</a>
+            <a href="#voice" class="btn btn-outline">Share Your Story</a>
+        </div>
+    </div>
+
     <section id="overview">
-        <h2>Overview</h2>
-        <p>TypeHealth is an interactive web platform dedicated to uncovering and addressing mental health disparities in marginalized communities. It integrates geospatial data and social media sentiment analytics to provide an evidence-based policy framework for healthcare organizations, government agencies, and community advocates.</p>
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>TypeHealth is a comprehensive interactive web platform dedicated to uncovering and addressing mental health disparities in marginalized communities. By integrating cutting-edge geospatial data analysis with social media sentiment analytics, we provide an evidence-based policy framework for healthcare organizations, government agencies, and community advocates.</p>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">43%</div>
+                    <div class="stat-label">of adults with mental illness received treatment in 2023</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5.2x</div>
+                    <div class="stat-label">higher risk in underserved communities</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">community partners nationwide</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">27</div>
+                    <div class="stat-label">policy implementations</div>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Data-Driven Insights</h3>
+                    <p>Our platform analyzes millions of data points to identify patterns and disparities in mental health access and outcomes across different demographics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Community Collaboration</h3>
+                    <p>We work directly with community organizations to ensure our solutions are culturally sensitive and address real-world needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Policy Impact</h3>
+                    <p>Our evidence-based recommendations have helped shape mental health policies at local, state, and national levels.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="geo">
-        <h2>🗽️ GeoInsights Map</h2>
-        <p>Dynamic map showing sample mental health clinic distribution, high-risk areas, and disparity indices layered with demographic data.</p>
-        <img src="assets/sample-map.png" alt="Sample GeoInsights Map" style="width:100%; max-width:600px;" />
+        <div class="container">
+            <h2>🗽️ GeoInsights Map</h2>
+            <p>Our interactive GeoInsights Map visualizes the relationship between mental health resources, demographics, and outcomes across communities. This powerful tool helps identify areas with significant gaps in mental healthcare access.</p>
+
+            <div class="data-controls">
+                <button class="control-btn active">Clinic Distribution</button>
+                <button class="control-btn">Risk Assessment</button>
+                <button class="control-btn">Disparity Index</button>
+                <button class="control-btn">Demographics</button>
+            </div>
+
+            <div class="map-container">
+                <img src="/api/placeholder/800/400" alt="Interactive GeoInsights Map" style="width:100%; height:100%; object-fit:cover;" />
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Resource Mapping</h3>
+                    <p>Visualize the distribution of mental health clinics, support groups, and other resources in relation to population density.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Risk Assessment</h3>
+                    <p>Identify high-risk areas based on socioeconomic factors, healthcare access, and historical mental health data.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Custom Filters</h3>
+                    <p>Filter data by demographics, income levels, insurance coverage, and more to create tailored visualizations.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="sentiment">
-        <h2>💬 Sentiment Tracker</h2>
-        <p>NLP-powered dashboard analyzing mental health sentiment trends on social media platforms like Twitter and Reddit.</p>
-        <ul>
-            <li>Positive: 40%</li>
-            <li>Neutral: 30%</li>
-            <li>Negative: 30%</li>
-        </ul>
+        <div class="container">
+            <h2>💬 Sentiment Tracker</h2>
+            <p>Our NLP-powered dashboard analyzes mental health sentiment trends across social media platforms like Twitter and Reddit, providing real-time insights into public perceptions and experiences.</p>
+
+            <div class="sentiment-chart">
+                <div class="sentiment-positive" style="width: 40%;"></div>
+                <div class="sentiment-neutral" style="width: 30%;"></div>
+                <div class="sentiment-negative" style="width: 30%;"></div>
+            </div>
+
+            <div class="sentiment-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4caf50;"></div>
+                    <span>Positive: 40%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #90a4ae;"></div>
+                    <span>Neutral: 30%</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f44336;"></div>
+                    <span>Negative: 30%</span>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Trend Analysis</h3>
+                    <p>Track how mental health conversations evolve over time, identifying emerging concerns and topics.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Demographic Insights</h3>
+                    <p>Understand how different communities discuss mental health and what unique challenges they face.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Early Warning System</h3>
+                    <p>Detect concerning trends in real-time to enable faster intervention and support deployment.</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <img src="/api/placeholder/800/300" alt="Sentiment Trends Chart" style="width:100%; height:100%; object-fit:cover;" />
+            </div>
+        </div>
     </section>
 
     <section id="explorer">
-        <h2>📊 Disparity Explorer</h2>
-        <p>Filterable datasets (sample data) visualizing correlations between mental health outcomes and:</p>
-        <ul>
-            <li>Race and Ethnicity</li>
-            <li>Income Levels</li>
-            <li>LGBTQ+ Identification</li>
-            <li>Healthcare Access</li>
-        </ul>
+        <div class="container">
+            <h2>📊 Disparity Explorer</h2>
+            <p>Our comprehensive data visualization tool reveals correlations between mental health outcomes and various demographic factors, allowing for deeper understanding of systemic disparities.</p>
+
+            <div class="data-controls">
+                <button class="control-btn active">Race & Ethnicity</button>
+                <button class="control-btn">Income Levels</button>
+                <button class="control-btn">LGBTQ+ Identification</button>
+                <button class="control-btn">Healthcare Access</button>
+                <button class="control-btn">Geographic Location</button>
+            </div>
+
+            <div class="chart-container">
+                <img src="/api/placeholder/800/400" alt="Disparity Explorer Visualization" style="width:100%; height:100%; object-fit:cover;" />
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Intersectional Analysis</h3>
+                    <p>Examine how multiple factors interact to create unique challenges for specific communities.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Comparative Studies</h3>
+                    <p>Compare mental health outcomes across different regions, demographics, and time periods.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Data Export</h3>
+                    <p>Download customized reports and datasets for your own research or advocacy work.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="policy">
-        <h2>💾 Policy Toolkit</h2>
-        <p>Interactive policy builder with downloadable toolkits, success stories, and customizable templates.</p>
-        <button>Download Sample Toolkit</button>
+        <div class="container">
+            <h2>💾 Policy Toolkit</h2>
+            <p>Our interactive policy builder provides evidence-based recommendations and customizable templates to help stakeholders develop effective mental health initiatives tailored to their communities.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Policy Templates</h3>
+                    <p>Access ready-to-use policy frameworks that can be adapted to local needs and resources.</p>
+                    <button class="btn">Download Template</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Success Stories</h3>
+                    <p>Learn from case studies of successful policy implementations across different communities.</p>
+                    <button class="btn">View Case Studies</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Implementation Guide</h3>
+                    <p>Step-by-step guidance for turning policy recommendations into actionable community programs.</p>
+                    <button class="btn">Get Guide</button>
+                </div>
+            </div>
+
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"The TypeHealth Policy Toolkit helped us secure funding for three new mental health clinics in underserved areas of our county."</div>
+                    <div class="testimonial-author">- Sarah Johnson, County Health Director</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"We used the data from TypeHealth to create targeted outreach programs that increased mental health service utilization by 47% in our community."</div>
+                    <div class="testimonial-author">- Dr. Michael Rodriguez, Community Health Center</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"The evidence-based approach of TypeHealth gave our advocacy work the credibility needed to influence state-level policy changes."</div>
+                    <div class="testimonial-author">- Alisha Patel, Mental Health Advocate</div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="voice">
-        <h2>📢 Voice It Wall</h2>
-        <p>Community feedback board. Add your story or suggestions (demo-only):</p>
-        <form>
-            <input type="text" placeholder="Your Name" required />
-            <textarea placeholder="Share your story..." required></textarea>
-            <button type="submit">Post</button>
-        </form>
+        <div class="container">
+            <h2>📢 Voice It Wall</h2>
+            <p>Our community feedback platform amplifies the voices of those with lived experience, providing valuable insights that inform our research and recommendations.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Share Your Story</h3>
+                    <p>Personal experiences help us better understand the real-world impact of mental health disparities.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Community Insights</h3>
+                    <p>Browse anonymized stories from community members to gain perspective on shared challenges.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Suggestion Box</h3>
+                    <p>Submit ideas for how mental health services could better meet your community's needs.</p>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <form id="voice-form">
+                    <input type="text" placeholder="Your Name (or Anonymous)" required />
+                    <input type="email" placeholder="Email (optional)" />
+                    <select required>
+                        <option value="" disabled selected>Select your perspective</option>
+                        <option value="lived">Person with lived experience</option>
+                        <option value="caregiver">Caregiver/Family member</option>
+                        <option value="provider">Healthcare provider</option>
+                        <option value="advocate">Community advocate</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <textarea placeholder="Share your story or suggestion..." required></textarea>
+                    <div style="margin: 10px 0;">
+                        <input type="checkbox" id="consent" required style="width: auto; margin-right: 10px;">
+                        <label for="consent">I consent to having my anonymized story shared for research and advocacy purposes</label>
+                    </div>
+                    <button type="submit">Submit Your Voice</button>
+                </form>
+            </div>
+        </div>
     </section>
 
     <section id="stakeholders">
-        <h2>👤 Stakeholder Reports</h2>
-        <p>Downloadable sample briefs tailored for different groups:</p>
-        <ul>
-            <li><a href="#">Healthcare Providers Brief</a></li>
-            <li><a href="#">Policy Makers Brief</a></li>
-            <li><a href="#">Community Organizations Brief</a></li>
-        </ul>
+        <div class="container">
+            <h2>👤 Stakeholder Reports</h2>
+            <p>Our specialized reports translate complex data into actionable insights for different stakeholder groups, ensuring that everyone has the information they need to make informed decisions.</p>
+
+            <ul class="reports-list">
+                <li>
+                    <a href="#">Healthcare Providers Brief: Improving Access & Outcomes</a>
+                    <p>Guidance for clinical settings on identifying and addressing disparities in care delivery and patient outcomes.</p>
+                </li>
+                <li>
+                    <a href="#">Policy Makers Brief: Evidence-Based Legislation</a>
+                    <p>Data-driven policy recommendations with projected impact assessments and implementation guidelines.</p>
+                </li>
+                <li>
+                    <a href="#">Community Organizations Brief: Grassroots Solutions</a>
+                    <p>Strategies for community-based organizations to maximize their impact with limited resources.</p>
+                </li>
+                <li>
+                    <a href="#">Education Sector Brief: Supporting Student Mental Health</a>
+                    <p>Best practices for schools and universities to address mental health needs in diverse student populations.</p>
+                </li>
+                <li>
+                    <a href="#">Corporate Brief: Workplace Mental Health Equity</a>
+                    <p>Guidance for employers on creating inclusive mental health support systems for employees.</p>
+                </li>
+            </ul>
+
+            <div class="newsletter">
+                <h3>Stay Informed</h3>
+                <p>Subscribe to our newsletter to receive the latest reports, data updates, and event announcements.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Mental Health Equity Summit</h3>
+                    <p><strong>Date:</strong> May 15, 2025</p>
+                    <p><strong>Location:</strong> Virtual</p>
+                    <p>Join experts, advocates, and policymakers for our annual summit focused on advancing mental health equity.</p>
+                    <button class="btn">Register Now</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Data Analysis Workshop</h3>
+                    <p><strong>Date:</strong> June 8, 2025</p>
+                    <p><strong>Location:</strong> Chicago, IL</p>
+                    <p>Learn how to use TypeHealth tools to analyze mental health data in your community.</p>
+                    <button class="btn">Learn More</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Community Advocacy Training</h3>
+                    <p><strong>Date:</strong> July 22, 2025</p>
+                    <p><strong>Location:</strong> Atlanta, GA</p>
+                    <p>Develop skills to effectively advocate for mental health resources in underserved communities.</p>
+                    <button class="btn">Register Interest</button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>TypeHealth</h3>
+                <p>Bridging the mental health gap through data, policy, and community engagement</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Twitter">T</a>
+                    <a href="#" aria-label="LinkedIn">L</a>
+                    <a href="#" aria-label="Facebook">F</a>
+                </div>
+        </div>
         <p>&copy; 2025 TypeHealth Project Team | Contact: connect@typehealth.org</p>
     </footer>
 
